@@ -5,7 +5,7 @@ const JWT_SECRET = 'Thisisasecretthread'
 const protectRoute = async (req, res, next) => {
 	try {
 		// const token = req.cookies.jwt;
-		let token = JSON.parse(req.header("jwt"))
+		let token = req.header("jwt") || JSON.parse(req.header("jwt"))
 		token = token.token
 		if (!token) {
 			return res.status(401).json({ error: "Unauthorized - No Token Provided" });
